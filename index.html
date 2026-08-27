@@ -201,7 +201,7 @@
             box-shadow: 0 2px 0 #8a2a2a, 0 0 0 4px #0b0e1a;
         }
 
-        /* ---------- БЛОК СТАТИСТИКИ (добавим контакты) ---------- */
+        /* ---------- БЛОК СТАТИСТИКИ ---------- */
         .stats-block {
             margin-top: 30px;
             background: #0b0e1a;
@@ -227,7 +227,6 @@
             display: inline-block;
             min-width: 40px;
         }
-        /* Дополнительная строка для контактов */
         .contact-info {
             margin-top: 10px;
             font-size: 0.8rem;
@@ -265,7 +264,7 @@
             100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
         }
 
-        /* ---------- МОДАЛЬНОЕ ОКНО ДЛЯ КОНТАКТОВ ---------- */
+        /* ---------- МОДАЛЬНОЕ ОКНО ---------- */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -328,6 +327,7 @@
             box-shadow: 0 8px 0 #1a7a3a, 0 0 0 4px #0b0e1a;
             padding: 14px 30px;
             font-size: 1rem;
+            width: 100%;
         }
         .modal-box .btn-save:active {
             transform: translateY(6px);
@@ -343,6 +343,12 @@
         }
         .modal-box .skip-link:hover {
             color: #8bb3d9;
+        }
+        .modal-box .status-msg {
+            font-size: 0.7rem;
+            margin-top: 10px;
+            color: #f7d44a;
+            min-height: 1.5em;
         }
 
         /* ---------- АДАПТИВНОСТЬ ---------- */
@@ -386,6 +392,7 @@
             <input type="email" id="userEmail" placeholder="alex@example.com" />
 
             <button class="btn btn-save" id="saveContactBtn">✅ СОХРАНИТЬ</button>
+            <div class="status-msg" id="formStatus"></div>
             <br />
             <span class="skip-link" id="skipContactBtn">пропустить (анонимно)</span>
         </div>
@@ -415,16 +422,11 @@
         </div>
 
         <div class="btn-group">
-            <!-- Кнопка Старт с вызовом Метрики и показом модалки -->
-            <button class="btn btn-start" id="startBtn">
-                ▶ СТАРТ
-            </button>
-            <button class="btn btn-reset" id="resetBtn">
-                ⟳ СБРОС
-            </button>
+            <button class="btn btn-start" id="startBtn">▶ СТАРТ</button>
+            <button class="btn btn-reset" id="resetBtn">⟳ СБРОС</button>
         </div>
 
-        <!-- Блок статистики + контактные данные -->
+        <!-- Блок статистики + контакты -->
         <div class="stats-block">
             <p>📊 СТАТИСТИКА КЛИКОВ</p>
             <div class="stats-row">
@@ -447,7 +449,7 @@
     </div>
 
     <!-- ============================================================
-         ОСНОВНОЙ СКРИПТ (таймер, счётчики, контакты, модалка)
+         ОСНОВНОЙ СКРИПТ (таймер, счётчики, контакты, Formspree)
          ============================================================ -->
     <script>
         (function() {
@@ -465,6 +467,7 @@
             const userEmailInput = document.getElementById('userEmail');
             const saveContactBtn = document.getElementById('saveContactBtn');
             const skipContactBtn = document.getElementById('skipContactBtn');
+            const formStatus = document.getElementById('formStatus');
             const displayName = document.getElementById('displayName');
             const displayEmail = document.getElementById('displayEmail');
 
@@ -614,11 +617,36 @@
                 setTimeout(() => { container.innerHTML = ''; }, 5000);
             }
 
+            // === ОТПРАВКА КОНТАКТОВ НА FORMPREE (ваш endpoint) ===
+            async function sendContactToFormspree(name, email) {
+                const endpoint = 'https://formspree.io/f/mzebpawq';
+                try {
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ name, email })
+                    });
+                    if (response.ok) {
+                        formStatus.textContent = '✅ Отправлено! Спасибо!';
+                        formStatus.style.color = '#2ed573';
+                    } else {
+                        formStatus.textContent = '❌ Ошибка отправки, попробуйте позже';
+                        formStatus.style.color = '#ff6b6b';
+                    }
+                } catch (error) {
+                    formStatus.textContent = '❌ Ошибка соединения';
+                    formStatus.style.color = '#ff6b6b';
+                }
+            }
+
             // === ОБРАБОТКА МОДАЛКИ ===
             function showModal() {
                 modal.classList.add('active');
                 if (userContact.name) userNameInput.value = userContact.name;
                 if (userContact.email) userEmailInput.value = userContact.email;
+                formStatus.textContent = '';
             }
 
             function hideModal() {
@@ -628,23 +656,32 @@
             function saveContact() {
                 const name = userNameInput.value.trim();
                 const email = userEmailInput.value.trim();
+                if (!name && !email) {
+                    formStatus.textContent = '⚠️ Введите хотя бы имя';
+                    formStatus.style.color = '#f7d44a';
+                    return;
+                }
+                // Сохраняем в localStorage
                 if (name) localStorage.setItem('userName', name);
                 if (email) localStorage.setItem('userEmail', email);
                 userContact.name = name || '';
                 userContact.email = email || '';
                 updateContactUI();
-                hideModal();
-                // Отправляем событие в Метрику с параметрами контакта
-                if (name || email) {
-                    ym(112002680, 'reachGoal', 'CONTACT_SAVED', { name: name, email: email });
-                }
-                // Запускаем таймер (если он ещё не запущен)
-                if (!isRunning && timeLeft > 0) {
-                    startTimer();
-                } else if (timeLeft === 0) {
-                    resetTimer();
-                    startTimer();
-                }
+                // Отправляем на Formspree
+                sendContactToFormspree(name, email);
+                // Отправляем событие в Метрику
+                ym(112002680, 'reachGoal', 'CONTACT_SAVED', { name: name, email: email });
+                // Закрываем модалку через 1 секунду (чтобы пользователь увидел статус)
+                setTimeout(() => {
+                    hideModal();
+                    // Запускаем таймер, если он не запущен
+                    if (!isRunning && timeLeft > 0) {
+                        startTimer();
+                    } else if (timeLeft === 0) {
+                        resetTimer();
+                        startTimer();
+                    }
+                }, 1000);
             }
 
             // === Обработчики модалки ===
@@ -660,29 +697,19 @@
                 }
             });
 
-            // Закрытие по клику на оверлей (но только если клик на самом оверлее)
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    // не закрываем, чтобы не потерять ввод
-                }
-            });
-
             // === Обработчик кнопки СТАРТ ===
             startBtn.addEventListener('click', function(e) {
                 // Если контакты не введены и модалка не активна – показываем модалку
                 if (!userContact.name && !userContact.email && !modal.classList.contains('active')) {
                     showModal();
-                    return; // ждём ввода
+                    return;
                 }
-
-                // Если модалка уже открыта – ничего не делаем (она обрабатывается отдельно)
                 if (modal.classList.contains('active')) return;
 
-                // Если контакты уже есть – управляем таймером как обычно
+                // Если контакты уже есть – управляем таймером
                 if (!isRunning) {
                     startCount++;
                     updateStatsUI();
-                    // Отправка события в Метрику (с дополнительными параметрами)
                     ym(112002680, 'reachGoal', 'START_CLICK', { name: userContact.name, email: userContact.email });
                 }
 
@@ -714,12 +741,8 @@
             statusMessage.textContent = '🕹️ ГОТОВ? НАЖМИ "СТАРТ"!';
             setTimeout(launchSparks, 400);
 
-            // Если контакты уже есть – показываем их
-            if (userContact.name || userContact.email) {
-                updateContactUI();
-            } else {
-                // Можно автоматически показать модалку при загрузке (но не навязчиво)
-                // Для удобства – покажем через 3 секунды, если контактов нет
+            // Если контактов нет – через 3 секунды показываем модалку
+            if (!userContact.name && !userContact.email) {
                 setTimeout(() => {
                     if (!userContact.name && !userContact.email) {
                         showModal();
@@ -728,6 +751,5 @@
             }
         })();
     </script>
-
 </body>
 </html>
