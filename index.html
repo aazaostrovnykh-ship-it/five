@@ -3,178 +3,557 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Сайт-визитка за 5 минут!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Rubik:wght@400;700;900&display=swap" rel="stylesheet" />
+    <title>Сайт-визитка в стиле «Пиксели»</title>
+    <!-- Пиксельный шрифт -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* ---------------------------------------------
+           ГЛОБАЛЬНЫЙ СБРОС И ПИКСЕЛЬНАЯ ОСНОВА
+           --------------------------------------------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            image-rendering: pixelated; /* для чётких границ */
+        }
+
         body {
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Rubik', sans-serif;
-            background: radial-gradient(circle at top left, #ff6b6b, #feca57, #48dbfb, #1dd1a1, #5f27cd);
-            background-size: 400% 400%;
-            animation: gradientMove 15s ease infinite;
-            padding: 20px;
+            font-family: 'Press Start 2P', monospace; /* пиксельный шрифт */
+            background: #0b0e1a; /* тёмный фон, как в космосе */
+            padding: 16px;
+            /* Анимированные звёзды на фоне (CSS-сетка) */
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: starsMove 20s linear infinite;
         }
-        @keyframes gradientMove {
-            0% { background-position: 0% 0%; }
-            50% { background-position: 100% 100%; }
-            100% { background-position: 0% 0%; }
+
+        @keyframes starsMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 40px 40px; }
         }
+
+        /* ---------------------------------------------
+           КАРТОЧКА – ПИКСЕЛЬНАЯ «ПАНЕЛЬ»
+           --------------------------------------------- */
         .card {
-            max-width: 750px;
+            max-width: 780px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 60px;
-            padding: 50px 40px;
+            background: #1a1f2e;
+            border: 6px solid #4a6a8f;
+            border-style: double;
+            box-shadow: 0 0 0 4px #0b0e1a, 0 0 0 8px #4a6a8f;
+            padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), 0 0 0 4px rgba(255, 255, 255, 0.2) inset;
-            transition: transform 0.3s ease;
+            position: relative;
         }
-        .card:hover { transform: scale(1.01); }
+
+        /* Декоративные уголки (как в ретро-играх) */
+        .card::before,
+        .card::after {
+            content: "◆";
+            position: absolute;
+            font-size: 2rem;
+            color: #f7d44a;
+            text-shadow: 0 0 8px #f7d44a;
+        }
+        .card::before { top: -10px; left: -10px; }
+        .card::after { bottom: -10px; right: -10px; }
+
+        /* ---------------------------------------------
+           ЗАГОЛОВКИ И ТЕКСТ
+           --------------------------------------------- */
         h1 {
-            font-family: 'Fredoka One', cursive;
-            font-size: 3.8rem;
-            color: #fff;
-            text-shadow: 4px 4px 0 #ff9f43, 8px 8px 0 rgba(0, 0, 0, 0.2);
-            letter-spacing: 1px;
-            margin-bottom: 10px;
+            font-size: 2.4rem;
+            color: #f7d44a;
+            text-shadow: 4px 4px 0 #b8860b, 0 0 20px #f7d44a;
+            letter-spacing: 2px;
+            line-height: 1.4;
+            margin-bottom: 12px;
         }
+        h1 span {
+            display: inline-block;
+            animation: blink 1.2s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
         .subtitle {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #fff7e6;
-            text-shadow: 2px 2px 0 #e17055;
-            margin-bottom: 30px;
+            font-size: 1rem;
+            color: #8bb3d9;
+            text-shadow: 2px 2px 0 #2a3a5a;
+            margin-bottom: 24px;
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 20px;
             flex-wrap: wrap;
         }
         .subtitle span {
-            background: #fd79a8;
-            padding: 6px 18px;
-            border-radius: 50px;
-            font-size: 1.6rem;
-            box-shadow: 0 4px 0 #6c5ce7;
-            transform: rotate(-2deg);
+            background: #2a3a5a;
+            padding: 8px 18px;
+            border: 3px solid #4a6a8f;
+            color: #b8d4f0;
+            font-size: 0.9rem;
         }
+
+        /* ---------------------------------------------
+           ТАЙМЕР – БОЛЬШОЙ И ПИКСЕЛЬНЫЙ
+           --------------------------------------------- */
         .timer-wrapper {
-            background: rgba(0, 0, 0, 0.25);
-            border-radius: 100px;
+            background: #0b0e1a;
+            border: 4px solid #4a6a8f;
             padding: 20px 30px;
-            margin: 20px 0 35px;
             display: inline-block;
-            box-shadow: 0 10px 0 rgba(0, 0, 0, 0.2);
+            margin: 10px 0 20px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
         }
+
         #timer {
-            font-family: 'Fredoka One', cursive;
-            font-size: 5rem;
-            color: #ffeaa7;
-            text-shadow: 0 0 20px #fdcb6e, 0 0 40px #e17055, 0 0 60px #d63031;
-            letter-spacing: 8px;
-            line-height: 1.2;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 4.8rem;
+            color: #7bed9f;
+            text-shadow: 0 0 20px #2ed573, 0 0 40px #2ed573;
+            letter-spacing: 6px;
         }
-        .emoji-big {
-            font-size: 4rem;
-            display: inline-block;
-            animation: bounce 1.5s infinite;
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
+
+        /* ---------------------------------------------
+           ПРОГРЕСС-БАР (ПИКСЕЛЬНЫЙ)
+           --------------------------------------------- */
         .progress-bar {
             width: 100%;
-            height: 16px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 20px;
-            margin: 25px 0 30px;
-            overflow: hidden;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+            height: 20px;
+            background: #0b0e1a;
+            border: 4px solid #4a6a8f;
+            margin: 20px 0 24px;
+            box-shadow: inset 0 0 10px #000;
         }
+
         #progressFill {
             height: 100%;
             width: 100%;
-            background: linear-gradient(90deg, #f9ca24, #f0932b, #eb4d4b);
-            border-radius: 20px;
-            transition: width 0.5s ease;
-            box-shadow: 0 0 20px #f0932b;
+            background: repeating-linear-gradient(90deg, #f7d44a, #f7d44a 12px, #b8860b 12px, #b8860b 24px);
+            transition: width 0.5s steps(10); /* ступенчатая анимация – пиксельно */
+            box-shadow: 0 0 20px #f7d44a;
         }
+
+        /* ---------------------------------------------
+           СТАТУСНОЕ СООБЩЕНИЕ
+           --------------------------------------------- */
         .status-message {
-            font-size: 2rem;
-            font-weight: 900;
-            color: #fff;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 12px 25px;
-            border-radius: 60px;
+            font-size: 1.2rem;
+            color: #b8d4f0;
+            background: #0b0e1a;
+            border: 4px solid #4a6a8f;
+            padding: 12px 24px;
             display: inline-block;
-            margin-bottom: 25px;
-            backdrop-filter: blur(4px);
-            box-shadow: 0 4px 0 #2d3436;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0 #1a2a3a;
         }
+
+        /* ---------------------------------------------
+           ПИКСЕЛЬНЫЕ КНОПКИ
+           --------------------------------------------- */
         .btn-group {
             display: flex;
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
-            margin-top: 20px;
+            margin-top: 10px;
         }
+
         .btn {
-            font-family: 'Fredoka One', cursive;
-            font-size: 1.6rem;
-            padding: 18px 40px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 1.2rem;
+            padding: 16px 32px;
             border: none;
-            border-radius: 60px;
-            cursor: pointer;
+            background: #4a6a8f;
             color: #fff;
-            background: #6c5ce7;
-            box-shadow: 0 8px 0 #3d3d3d, 0 10px 20px rgba(0, 0, 0, 0.2);
-            transition: all 0.1s ease;
+            text-shadow: 2px 2px 0 #1a2a3a;
+            box-shadow: 0 8px 0 #1a2a3a, 0 0 0 4px #0b0e1a;
+            cursor: pointer;
+            transition: all 0.05s linear;
             text-transform: uppercase;
             letter-spacing: 2px;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
+            position: relative;
         }
+
         .btn:active {
             transform: translateY(6px);
-            box-shadow: 0 2px 0 #3d3d3d;
+            box-shadow: 0 2px 0 #1a2a3a, 0 0 0 4px #0b0e1a;
         }
+
+        .btn-start {
+            background: #2ed573;
+            box-shadow: 0 8px 0 #1a7a3a, 0 0 0 4px #0b0e1a;
+        }
+        .btn-start:active {
+            box-shadow: 0 2px 0 #1a7a3a, 0 0 0 4px #0b0e1a;
+        }
+
         .btn-reset {
-            background: #fd79a8;
-            box-shadow: 0 8px 0 #6c5ce7;
+            background: #ff6b6b;
+            box-shadow: 0 8px 0 #8a2a2a, 0 0 0 4px #0b0e1a;
         }
         .btn-reset:active {
-            transform: translateY(6px);
-            box-shadow: 0 2px 0 #6c5ce7;
+            box-shadow: 0 2px 0 #8a2a2a, 0 0 0 4px #0b0e1a;
         }
+
+        /* ---------------------------------------------
+           БЛОК СТАТИСТИКИ (ПИКСЕЛЬНЫЙ)
+           --------------------------------------------- */
         .stats-block {
             margin-top: 30px;
-            background: rgba(0, 0, 0, 0.25);
-            border-radius: 40px;
-            padding: 20px 15px;
-            backdrop-filter: blur(4px);
+            background: #0b0e1a;
+            border: 4px solid #4a6a8f;
+            padding: 16px 20px;
         }
         .stats-block p {
-            color: #fff;
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 10px;
+            color: #b8d4f0;
+            font-size: 1rem;
+            margin-bottom: 12px;
         }
         .stats-row {
             display: flex;
             justify-content: center;
             gap: 30px;
             flex-wrap: wrap;
-            font-size: 1.3rem;
-            color: #ffeaa7;
+            font-size: 0.9rem;
+            color: #8bb3d9;
         }
         .stats-row span strong {
-            font-size: 1.8rem;
-            color: #fff;
-            background: rgba
+            font-size: 1.6rem;
+            color: #f7d44a;
+            display: inline-block;
+            min-width: 40px;
+        }
+
+        /* ---------------------------------------------
+           ПИКСЕЛЬНЫЕ ИСКРЫ (ВМЕСТО КОНФЕТТИ)
+           --------------------------------------------- */
+        .spark-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            overflow: hidden;
+        }
+        .spark {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #f7d44a;
+            border: 2px solid #b8860b;
+            image-rendering: pixelated;
+            animation: sparkFall linear forwards;
+        }
+        @keyframes sparkFall {
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* ---------------------------------------------
+           АДАПТИВНОСТЬ
+           --------------------------------------------- */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .subtitle { font-size: 0.8rem; gap: 10px; }
+            #timer { font-size: 3.2rem; letter-spacing: 4px; }
+            .btn { font-size: 0.9rem; padding: 12px 20px; }
+            .stats-row { gap: 15px; }
+            .card { padding: 25px 15px; }
+        }
+
+        /* Дополнительная анимация для пиксельных «звёздочек» */
+        .pixel-star {
+            display: inline-block;
+            font-size: 2rem;
+            animation: spinStar 6s linear infinite;
+        }
+        @keyframes spinStar {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Контейнер для пиксельных искр -->
+    <div class="spark-container" id="sparkContainer"></div>
+
+    <!-- ============ ОСНОВНАЯ КАРТОЧКА ============ -->
+    <div class="card">
+        <h1>
+            <span>👾</span> ВИЗИТКА <span>👾</span><br>
+            ЗА 5 МИНУТ
+        </h1>
+        <div class="subtitle">
+            <span>🕹️ RETRO</span>
+            <span>⚡ POWER UP</span>
+        </div>
+
+        <div class="timer-wrapper">
+            <div id="timer">5:00</div>
+        </div>
+
+        <div class="progress-bar">
+            <div id="progressFill" style="width: 100%;"></div>
+        </div>
+
+        <div class="status-message" id="statusMessage">
+            ⏳ НАЖМИ СТАРТ
+        </div>
+
+        <div class="btn-group">
+            <!--
+                В кнопки добавлен вызов Яндекс Метрики.
+                Замените XXXXXX на номер вашего счётчика.
+                Для целей создайте в Метрике цели с именами START_CLICK и RESET_CLICK
+                (тип "JavaScript-событие").
+            -->
+            <button class="btn btn-start" id="startBtn" 
+                    onclick="ym(XXXXXX, 'reachGoal', 'START_CLICK');">
+                ▶ СТАРТ
+            </button>
+            <button class="btn btn-reset" id="resetBtn"
+                    onclick="ym(XXXXXX, 'reachGoal', 'RESET_CLICK');">
+                ⟳ СБРОС
+            </button>
+        </div>
+
+        <!-- Блок статистики -->
+        <div class="stats-block">
+            <p>📊 СТАТИСТИКА КЛИКОВ</p>
+            <div class="stats-row">
+                <span>▶ СТАРТ: <strong id="startClicks">0</strong></span>
+                <span>⟳ СБРОС: <strong id="resetClicks">0</strong></span>
+                <span>📌 ВСЕГО: <strong id="totalClicks">0</strong></span>
+            </div>
+        </div>
+
+        <!-- Пиксельные украшения -->
+        <div style="margin-top: 25px; font-size: 2.2rem; color: #4a6a8f; letter-spacing: 12px;">
+            <span class="pixel-star">✦</span>
+            <span class="pixel-star" style="animation-duration: 8s;">✧</span>
+            <span class="pixel-star" style="animation-duration: 4s;">✦</span>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         ЯНДЕКС МЕТРИКА – ВСТАВЬТЕ СВОЙ КОД СЧЁТЧИКА
+         Замените XXXXXX на номер счётчика в обоих местах:
+         – в коде счётчика ниже
+         – в атрибутах onclick кнопок (уже стоят)
+         ============================================================ -->
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        ym(XXXXXX, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/XXXXXX" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+
+    <!-- ============================================================
+         ОСНОВНОЙ СКРИПТ (таймер, счётчики, искры)
+         ============================================================ -->
+    <script>
+        (function() {
+            // === Элементы ===
+            const timerDisplay = document.getElementById('timer');
+            const progressFill = document.getElementById('progressFill');
+            const statusMessage = document.getElementById('statusMessage');
+            const startBtn = document.getElementById('startBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const sparkContainer = document.getElementById('sparkContainer');
+
+            const TOTAL_SECONDS = 5 * 60;
+            let timeLeft = TOTAL_SECONDS;
+            let timerInterval = null;
+            let isRunning = false;
+            let isFinished = false;
+
+            // === Счётчики кликов (сохраняются в localStorage) ===
+            let startCount = parseInt(localStorage.getItem('startClicks_pixel') || '0');
+            let resetCount = parseInt(localStorage.getItem('resetClicks_pixel') || '0');
+
+            function updateStatsUI() {
+                document.getElementById('startClicks').textContent = startCount;
+                document.getElementById('resetClicks').textContent = resetCount;
+                document.getElementById('totalClicks').textContent = startCount + resetCount;
+                localStorage.setItem('startClicks_pixel', startCount);
+                localStorage.setItem('resetClicks_pixel', resetCount);
+            }
+
+            // === Форматирование времени ===
+            function formatTime(seconds) {
+                const mins = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+
+            // === Обновление дисплея ===
+            function updateDisplay() {
+                timerDisplay.textContent = formatTime(timeLeft);
+                const progress = (timeLeft / TOTAL_SECONDS) * 100;
+                progressFill.style.width = `${progress}%`;
+
+                // Цвет таймера при приближении к концу
+                if (timeLeft <= 30) {
+                    timerDisplay.style.color = '#ff6b6b';
+                    timerDisplay.style.textShadow = '0 0 20px #ff6b6b, 0 0 40px #ff4757';
+                } else if (timeLeft <= 60) {
+                    timerDisplay.style.color = '#f7d44a';
+                    timerDisplay.style.textShadow = '0 0 20px #f7d44a, 0 0 40px #b8860b';
+                } else {
+                    timerDisplay.style.color = '#7bed9f';
+                    timerDisplay.style.textShadow = '0 0 20px #2ed573, 0 0 40px #2ed573';
+                }
+
+                // Статус
+                if (timeLeft === 0) {
+                    statusMessage.textContent = '🎉 ГОТОВО! САЙТ СОЗДАН! 🎉';
+                    statusMessage.style.background = '#2ed573';
+                    statusMessage.style.borderColor = '#1a7a3a';
+                    statusMessage.style.color = '#0b0e1a';
+                    isFinished = true;
+                    if (isRunning) {
+                        stopTimer();
+                        launchSparks();
+                    }
+                } else {
+                    statusMessage.textContent = `⏳ ОСТАЛОСЬ ${formatTime(timeLeft)}`;
+                    statusMessage.style.background = '#0b0e1a';
+                    statusMessage.style.borderColor = '#4a6a8f';
+                    statusMessage.style.color = '#b8d4f0';
+                    isFinished = false;
+                }
+            }
+
+            // === Управление таймером ===
+            function startTimer() {
+                if (isRunning) return;
+                if (timeLeft === 0) {
+                    resetTimer();
+                }
+                isRunning = true;
+                isFinished = false;
+                timerInterval = setInterval(() => {
+                    if (timeLeft > 0) {
+                        timeLeft--;
+                        updateDisplay();
+                    } else {
+                        stopTimer();
+                        updateDisplay();
+                        launchSparks();
+                    }
+                }, 1000);
+                startBtn.textContent = '⏸ ПАУЗА';
+                startBtn.style.background = '#f7d44a';
+                startBtn.style.boxShadow = '0 8px 0 #b8860b, 0 0 0 4px #0b0e1a';
+                statusMessage.textContent = '⏳ ВРЕМЯ ПОШЛО!';
+            }
+
+            function stopTimer() {
+                clearInterval(timerInterval);
+                timerInterval = null;
+                isRunning = false;
+                startBtn.textContent = '▶ ПРОДОЛЖИТЬ';
+                startBtn.style.background = '#2ed573';
+                startBtn.style.boxShadow = '0 8px 0 #1a7a3a, 0 0 0 4px #0b0e1a';
+            }
+
+            function resetTimer() {
+                clearInterval(timerInterval);
+                timerInterval = null;
+                isRunning = false;
+                isFinished = false;
+                timeLeft = TOTAL_SECONDS;
+                updateDisplay();
+                startBtn.textContent = '▶ СТАРТ';
+                startBtn.style.background = '#2ed573';
+                startBtn.style.boxShadow = '0 8px 0 #1a7a3a, 0 0 0 4px #0b0e1a';
+                statusMessage.textContent = '🔄 СБРОС. НАЖМИ "СТАРТ"!';
+                statusMessage.style.background = '#0b0e1a';
+                statusMessage.style.borderColor = '#4a6a8f';
+                statusMessage.style.color = '#b8d4f0';
+                sparkContainer.innerHTML = '';
+            }
+
+            // === ПИКСЕЛЬНЫЕ ИСКРЫ (вместо конфетти) ===
+            function launchSparks() {
+                const colors = ['#f7d44a', '#ff6b6b', '#4a6a8f', '#2ed573', '#b8860b', '#a29bfe', '#fd79a8'];
+                const container = sparkContainer;
+                container.innerHTML = '';
+                for (let i = 0; i < 100; i++) {
+                    const spark = document.createElement('div');
+                    spark.className = 'spark';
+                    const size = Math.floor(Math.random() * 12) + 6;
+                    spark.style.width = size + 'px';
+                    spark.style.height = size + 'px';
+                    spark.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    spark.style.left = Math.random() * 100 + '%';
+                    spark.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    spark.style.animationDelay = (Math.random() * 2) + 's';
+                    spark.style.border = '2px solid #0b0e1a';
+                    container.appendChild(spark);
+                }
+                setTimeout(() => { container.innerHTML = ''; }, 5000);
+            }
+
+            // === Обработчики кнопок с учётом счётчиков ===
+            startBtn.addEventListener('click', function(e) {
+                // Считаем клик по старт (даже если на паузу)
+                if (!isRunning) {
+                    startCount++;
+                    updateStatsUI();
+                }
+                // Таймер управляется отдельно
+                if (isRunning) {
+                    stopTimer();
+                    statusMessage.textContent = '⏸ ПАУЗА. НАЖМИ "ПРОДОЛЖИТЬ"';
+                } else {
+                    if (timeLeft === 0) {
+                        resetTimer();
+                        startTimer();
+                    } else {
+                        startTimer();
+                    }
+                }
+            });
+
+            resetBtn.addEventListener('click', function() {
+                resetCount++;
+                updateStatsUI();
+                resetTimer();
+            });
+
+            // === Инициализация ===
+            updateDisplay();
+            updateStatsUI();
+            statusMessage.textContent = '🕹️ ГОТОВ? НАЖМИ "СТАРТ"!';
+
+            // Запускаем пару искр для приветствия
+            setTimeout(launchSparks, 400);
+        })();
+    </script>
+
+</body>
+</html>
