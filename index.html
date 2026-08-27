@@ -28,6 +28,10 @@
             image-rendering: pixelated;
         }
 
+        html, body {
+            overflow-x: hidden; /* убираем горизонтальный скролл */
+        }
+
         body {
             min-height: 100vh;
             display: flex;
@@ -55,7 +59,7 @@
             border: 6px solid #4a6a8f;
             border-style: double;
             box-shadow: 0 0 0 4px #0b0e1a, 0 0 0 8px #4a6a8f;
-            padding: 40px 30px;
+            padding: 30px 25px; /* уменьшил отступы */
             text-align: center;
             position: relative;
         }
@@ -64,20 +68,20 @@
         .card::after {
             content: "◆";
             position: absolute;
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: #f7d44a;
             text-shadow: 0 0 8px #f7d44a;
         }
-        .card::before { top: -10px; left: -10px; }
-        .card::after { bottom: -10px; right: -10px; }
+        .card::before { top: -8px; left: -8px; }
+        .card::after { bottom: -8px; right: -8px; }
 
         h1 {
-            font-size: 2.4rem;
+            font-size: 2.2rem;
             color: #f7d44a;
             text-shadow: 4px 4px 0 #b8860b, 0 0 20px #f7d44a;
             letter-spacing: 2px;
             line-height: 1.4;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         h1 span {
             display: inline-block;
@@ -90,35 +94,35 @@
         }
 
         .subtitle {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #8bb3d9;
             text-shadow: 2px 2px 0 #2a3a5a;
-            margin-bottom: 24px;
+            margin-bottom: 18px;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 16px;
             flex-wrap: wrap;
         }
         .subtitle span {
             background: #2a3a5a;
-            padding: 8px 18px;
+            padding: 6px 14px;
             border: 3px solid #4a6a8f;
             color: #b8d4f0;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         .timer-wrapper {
             background: #0b0e1a;
             border: 4px solid #4a6a8f;
-            padding: 20px 30px;
+            padding: 16px 24px;
             display: inline-block;
-            margin: 10px 0 20px;
+            margin: 8px 0 16px;
             box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
         }
 
         #timer {
             font-family: 'Press Start 2P', monospace;
-            font-size: 4.8rem;
+            font-size: 4.2rem;
             color: #7bed9f;
             text-shadow: 0 0 20px #2ed573, 0 0 40px #2ed573;
             letter-spacing: 6px;
@@ -126,10 +130,10 @@
 
         .progress-bar {
             width: 100%;
-            height: 20px;
+            height: 18px;
             background: #0b0e1a;
             border: 4px solid #4a6a8f;
-            margin: 20px 0 24px;
+            margin: 16px 0 20px;
             box-shadow: inset 0 0 10px #000;
         }
 
@@ -142,33 +146,33 @@
         }
 
         .status-message {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: #b8d4f0;
             background: #0b0e1a;
             border: 4px solid #4a6a8f;
-            padding: 12px 24px;
+            padding: 10px 20px;
             display: inline-block;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             text-shadow: 2px 2px 0 #1a2a3a;
         }
 
         .btn-group {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 16px;
             flex-wrap: wrap;
-            margin-top: 10px;
+            margin-top: 6px;
         }
 
         .btn {
             font-family: 'Press Start 2P', monospace;
-            font-size: 1.2rem;
-            padding: 16px 32px;
+            font-size: 1rem;
+            padding: 14px 28px;
             border: none;
             background: #4a6a8f;
             color: #fff;
             text-shadow: 2px 2px 0 #1a2a3a;
-            box-shadow: 0 8px 0 #1a2a3a, 0 0 0 4px #0b0e1a;
+            box-shadow: 0 6px 0 #1a2a3a, 0 0 0 4px #0b0e1a;
             cursor: pointer;
             transition: all 0.05s linear;
             text-transform: uppercase;
@@ -177,13 +181,13 @@
         }
 
         .btn:active {
-            transform: translateY(6px);
+            transform: translateY(4px);
             box-shadow: 0 2px 0 #1a2a3a, 0 0 0 4px #0b0e1a;
         }
 
         .btn-start {
             background: #2ed573;
-            box-shadow: 0 8px 0 #1a7a3a, 0 0 0 4px #0b0e1a;
+            box-shadow: 0 6px 0 #1a7a3a, 0 0 0 4px #0b0e1a;
         }
         .btn-start:active {
             box-shadow: 0 2px 0 #1a7a3a, 0 0 0 4px #0b0e1a;
@@ -191,7 +195,7 @@
 
         .btn-reset {
             background: #ff6b6b;
-            box-shadow: 0 8px 0 #8a2a2a, 0 0 0 4px #0b0e1a;
+            box-shadow: 0 6px 0 #8a2a2a, 0 0 0 4px #0b0e1a;
         }
         .btn-reset:active {
             box-shadow: 0 2px 0 #8a2a2a, 0 0 0 4px #0b0e1a;
@@ -199,40 +203,40 @@
 
         /* ---------- БЛОК СТАТИСТИКИ ---------- */
         .stats-block {
-            margin-top: 30px;
+            margin-top: 24px;
             background: #0b0e1a;
             border: 4px solid #4a6a8f;
-            padding: 16px 20px;
+            padding: 14px 16px;
         }
         .stats-block p {
             color: #b8d4f0;
-            font-size: 1rem;
-            margin-bottom: 12px;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
         }
         .stats-row {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 24px;
             flex-wrap: wrap;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #8bb3d9;
         }
         .stats-row span strong {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             color: #f7d44a;
             display: inline-block;
-            min-width: 40px;
+            min-width: 30px;
         }
         .contact-info {
-            margin-top: 10px;
-            font-size: 0.8rem;
+            margin-top: 8px;
+            font-size: 0.7rem;
             color: #7bed9f;
             border-top: 2px solid #4a6a8f;
-            padding-top: 10px;
+            padding-top: 8px;
         }
         .contact-info span {
             display: inline-block;
-            margin: 0 15px;
+            margin: 0 12px;
         }
 
         /* ---------- ПИКСЕЛЬНЫЕ ИСКРЫ ---------- */
@@ -284,30 +288,30 @@
         .modal-box {
             background: #1a1f2e;
             border: 6px double #4a6a8f;
-            padding: 40px 30px;
-            max-width: 450px;
+            padding: 30px 25px;
+            max-width: 400px;
             width: 90%;
             text-align: center;
             box-shadow: 0 0 0 4px #0b0e1a, 0 0 0 8px #4a6a8f;
         }
         .modal-box h2 {
             color: #f7d44a;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            font-size: 1.3rem;
+            margin-bottom: 16px;
             text-shadow: 2px 2px 0 #b8860b;
         }
         .modal-box label {
             display: block;
             color: #b8d4f0;
-            font-size: 0.8rem;
-            margin-top: 12px;
+            font-size: 0.7rem;
+            margin-top: 10px;
             text-align: left;
         }
         .modal-box input {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             font-family: 'Press Start 2P', monospace;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             background: #0b0e1a;
             border: 4px solid #4a6a8f;
             color: #7bed9f;
@@ -318,11 +322,11 @@
             border-color: #f7d44a;
         }
         .modal-box .btn-save {
-            margin-top: 20px;
+            margin-top: 16px;
             background: #2ed573;
-            box-shadow: 0 8px 0 #1a7a3a, 0 0 0 4px #0b0e1a;
-            padding: 14px 30px;
-            font-size: 1rem;
+            box-shadow: 0 6px 0 #1a7a3a, 0 0 0 4px #0b0e1a;
+            padding: 12px 24px;
+            font-size: 0.9rem;
             width: 100%;
             border: none;
             color: #fff;
@@ -332,14 +336,14 @@
             transition: all 0.05s linear;
         }
         .modal-box .btn-save:active {
-            transform: translateY(6px);
+            transform: translateY(4px);
             box-shadow: 0 2px 0 #1a7a3a, 0 0 0 4px #0b0e1a;
         }
         .modal-box .skip-link {
             display: inline-block;
-            margin-top: 15px;
+            margin-top: 12px;
             color: #4a6a8f;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             cursor: pointer;
             text-decoration: underline;
         }
@@ -347,30 +351,154 @@
             color: #8bb3d9;
         }
         .modal-box .status-msg {
-            font-size: 0.8rem;
-            margin-top: 10px;
+            font-size: 0.7rem;
+            margin-top: 8px;
             min-height: 1.5em;
         }
 
-        /* ---------- АДАПТИВНОСТЬ ---------- */
+        /* ---------- АДАПТИВНОСТЬ (усиленная) ---------- */
         @media (max-width: 600px) {
-            h1 { font-size: 1.8rem; }
-            .subtitle { font-size: 0.8rem; gap: 10px; }
-            #timer { font-size: 3.2rem; letter-spacing: 4px; }
-            .btn { font-size: 0.9rem; padding: 12px 20px; }
-            .stats-row { gap: 15px; }
-            .card { padding: 25px 15px; }
-            .modal-box { padding: 25px 15px; }
+            body {
+                padding: 10px;
+            }
+            .card {
+                padding: 18px 12px;
+                border-width: 4px;
+                box-shadow: 0 0 0 3px #0b0e1a, 0 0 0 6px #4a6a8f;
+            }
+            .card::before,
+            .card::after {
+                font-size: 1.2rem;
+                top: -6px;
+                left: -6px;
+                bottom: -6px;
+                right: -6px;
+            }
+            h1 {
+                font-size: 1.4rem;
+                text-shadow: 3px 3px 0 #b8860b, 0 0 15px #f7d44a;
+                letter-spacing: 1px;
+                margin-bottom: 6px;
+            }
+            .subtitle {
+                font-size: 0.65rem;
+                gap: 10px;
+                margin-bottom: 12px;
+            }
+            .subtitle span {
+                padding: 4px 10px;
+                font-size: 0.6rem;
+                border-width: 2px;
+            }
+            .timer-wrapper {
+                padding: 10px 14px;
+                margin: 6px 0 10px;
+                border-width: 3px;
+            }
+            #timer {
+                font-size: 2.8rem;
+                letter-spacing: 3px;
+            }
+            .progress-bar {
+                height: 14px;
+                margin: 12px 0 14px;
+                border-width: 3px;
+            }
+            .status-message {
+                font-size: 0.7rem;
+                padding: 8px 14px;
+                border-width: 3px;
+                margin-bottom: 10px;
+            }
+            .btn {
+                font-size: 0.7rem;
+                padding: 10px 16px;
+                box-shadow: 0 4px 0 #1a2a3a, 0 0 0 3px #0b0e1a;
+            }
+            .btn:active {
+                transform: translateY(3px);
+                box-shadow: 0 1px 0 #1a2a3a, 0 0 0 3px #0b0e1a;
+            }
+            .btn-start {
+                box-shadow: 0 4px 0 #1a7a3a, 0 0 0 3px #0b0e1a;
+            }
+            .btn-start:active {
+                box-shadow: 0 1px 0 #1a7a3a, 0 0 0 3px #0b0e1a;
+            }
+            .btn-reset {
+                box-shadow: 0 4px 0 #8a2a2a, 0 0 0 3px #0b0e1a;
+            }
+            .btn-reset:active {
+                box-shadow: 0 1px 0 #8a2a2a, 0 0 0 3px #0b0e1a;
+            }
+            .stats-block {
+                margin-top: 16px;
+                padding: 10px 8px;
+                border-width: 3px;
+            }
+            .stats-block p {
+                font-size: 0.65rem;
+                margin-bottom: 6px;
+            }
+            .stats-row {
+                font-size: 0.6rem;
+                gap: 12px;
+            }
+            .stats-row span strong {
+                font-size: 1rem;
+                min-width: 20px;
+            }
+            .contact-info {
+                font-size: 0.55rem;
+                margin-top: 4px;
+                padding-top: 4px;
+            }
+            .contact-info span {
+                margin: 0 6px;
+            }
+            .pixel-star {
+                font-size: 1.2rem;
+            }
+            .modal-box {
+                padding: 20px 15px;
+                border-width: 4px;
+            }
+            .modal-box h2 {
+                font-size: 1rem;
+                margin-bottom: 12px;
+            }
+            .modal-box label {
+                font-size: 0.6rem;
+            }
+            .modal-box input {
+                font-size: 0.65rem;
+                padding: 8px;
+                border-width: 3px;
+            }
+            .modal-box .btn-save {
+                font-size: 0.7rem;
+                padding: 10px 16px;
+            }
         }
 
-        .pixel-star {
-            display: inline-block;
-            font-size: 2rem;
-            animation: spinStar 6s linear infinite;
-        }
-        @keyframes spinStar {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        /* Ещё меньше для очень узких экранов */
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.1rem;
+            }
+            #timer {
+                font-size: 2.2rem;
+                letter-spacing: 2px;
+            }
+            .btn {
+                font-size: 0.6rem;
+                padding: 8px 12px;
+            }
+            .stats-row {
+                gap: 8px;
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
@@ -382,7 +510,7 @@
     <div class="modal-overlay" id="contactModal">
         <div class="modal-box">
             <h2>👾 ПРЕДСТАВЬТЕСЬ</h2>
-            <p style="color: #8bb3d9; font-size: 0.7rem; margin-bottom: 10px;">
+            <p style="color: #8bb3d9; font-size: 0.7rem; margin-bottom: 8px;">
                 Чтобы мы могли связаться с вами после создания сайта
             </p>
             <label>Ваше имя</label>
@@ -398,7 +526,6 @@
 
     <!-- ========== ОСНОВНАЯ КАРТОЧКА ========== -->
     <div class="card">
-        <!-- НОВЫЙ ЗАГОЛОВОК - ТАК, КАК ВЫ ПРОСИЛИ -->
         <h1>
             <span>👾</span> САЙТ-ВИЗИТКА ЗА 5 МИНУТ <span>👾</span>
         </h1>
@@ -439,7 +566,7 @@
             </div>
         </div>
 
-        <div style="margin-top: 25px; font-size: 2.2rem; color: #4a6a8f; letter-spacing: 12px;">
+        <div style="margin-top: 20px; font-size: 1.8rem; color: #4a6a8f; letter-spacing: 8px;">
             <span class="pixel-star">✦</span>
             <span class="pixel-star" style="animation-duration: 8s;">✧</span>
             <span class="pixel-star" style="animation-duration: 4s;">✦</span>
@@ -563,7 +690,7 @@
                 }, 1000);
                 startBtn.textContent = '⏸ ПАУЗА';
                 startBtn.style.background = '#f7d44a';
-                startBtn.style.boxShadow = '0 8px 0 #b8860b, 0 0 0 4px #0b0e1a';
+                startBtn.style.boxShadow = '0 6px 0 #b8860b, 0 0 0 4px #0b0e1a';
                 statusMessage.textContent = '⏳ ВРЕМЯ ПОШЛО!';
             }
 
@@ -573,7 +700,7 @@
                 isRunning = false;
                 startBtn.textContent = '▶ ПРОДОЛЖИТЬ';
                 startBtn.style.background = '#2ed573';
-                startBtn.style.boxShadow = '0 8px 0 #1a7a3a, 0 0 0 4px #0b0e1a';
+                startBtn.style.boxShadow = '0 6px 0 #1a7a3a, 0 0 0 4px #0b0e1a';
             }
 
             function resetTimer() {
@@ -585,7 +712,7 @@
                 updateDisplay();
                 startBtn.textContent = '▶ СТАРТ';
                 startBtn.style.background = '#2ed573';
-                startBtn.style.boxShadow = '0 8px 0 #1a7a3a, 0 0 0 4px #0b0e1a';
+                startBtn.style.boxShadow = '0 6px 0 #1a7a3a, 0 0 0 4px #0b0e1a';
                 statusMessage.textContent = '🔄 СБРОС. НАЖМИ "СТАРТ"!';
                 statusMessage.style.background = '#0b0e1a';
                 statusMessage.style.borderColor = '#4a6a8f';
