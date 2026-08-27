@@ -6,6 +6,24 @@
     <title>Сайт-визитка в стиле «Пиксели»</title>
     <!-- Пиксельный шрифт -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+
+    <!-- ============================================================
+         ЯНДЕКС МЕТРИКА – ВАШ КОД С СЧЁТЧИКОМ 112002680
+         ============================================================ -->
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=112002680', 'ym');
+
+        ym(112002680, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/112002680" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
     <style>
         /* ---------------------------------------------
            ГЛОБАЛЬНЫЙ СБРОС И ПИКСЕЛЬНАЯ ОСНОВА
@@ -14,7 +32,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            image-rendering: pixelated; /* для чётких границ */
+            image-rendering: pixelated;
         }
 
         body {
@@ -22,10 +40,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Press Start 2P', monospace; /* пиксельный шрифт */
-            background: #0b0e1a; /* тёмный фон, как в космосе */
+            font-family: 'Press Start 2P', monospace;
+            background: #0b0e1a;
             padding: 16px;
-            /* Анимированные звёзды на фоне (CSS-сетка) */
             background-image: 
                 linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
@@ -53,7 +70,6 @@
             position: relative;
         }
 
-        /* Декоративные уголки (как в ретро-играх) */
         .card::before,
         .card::after {
             content: "◆";
@@ -105,7 +121,7 @@
         }
 
         /* ---------------------------------------------
-           ТАЙМЕР – БОЛЬШОЙ И ПИКСЕЛЬНЫЙ
+           ТАЙМЕР
            --------------------------------------------- */
         .timer-wrapper {
             background: #0b0e1a;
@@ -125,7 +141,7 @@
         }
 
         /* ---------------------------------------------
-           ПРОГРЕСС-БАР (ПИКСЕЛЬНЫЙ)
+           ПРОГРЕСС-БАР
            --------------------------------------------- */
         .progress-bar {
             width: 100%;
@@ -140,12 +156,12 @@
             height: 100%;
             width: 100%;
             background: repeating-linear-gradient(90deg, #f7d44a, #f7d44a 12px, #b8860b 12px, #b8860b 24px);
-            transition: width 0.5s steps(10); /* ступенчатая анимация – пиксельно */
+            transition: width 0.5s steps(10);
             box-shadow: 0 0 20px #f7d44a;
         }
 
         /* ---------------------------------------------
-           СТАТУСНОЕ СООБЩЕНИЕ
+           СТАТУС
            --------------------------------------------- */
         .status-message {
             font-size: 1.2rem;
@@ -207,7 +223,7 @@
         }
 
         /* ---------------------------------------------
-           БЛОК СТАТИСТИКИ (ПИКСЕЛЬНЫЙ)
+           СТАТИСТИКА
            --------------------------------------------- */
         .stats-block {
             margin-top: 30px;
@@ -236,7 +252,7 @@
         }
 
         /* ---------------------------------------------
-           ПИКСЕЛЬНЫЕ ИСКРЫ (ВМЕСТО КОНФЕТТИ)
+           ПИКСЕЛЬНЫЕ ИСКРЫ
            --------------------------------------------- */
         .spark-container {
             position: fixed;
@@ -274,7 +290,6 @@
             .card { padding: 25px 15px; }
         }
 
-        /* Дополнительная анимация для пиксельных «звёздочек» */
         .pixel-star {
             display: inline-block;
             font-size: 2rem;
@@ -315,18 +330,13 @@
         </div>
 
         <div class="btn-group">
-            <!--
-                В кнопки добавлен вызов Яндекс Метрики.
-                Замените XXXXXX на номер вашего счётчика.
-                Для целей создайте в Метрике цели с именами START_CLICK и RESET_CLICK
-                (тип "JavaScript-событие").
-            -->
+            <!-- Кнопки с вызовом Яндекс Метрики (цели START_CLICK и RESET_CLICK) -->
             <button class="btn btn-start" id="startBtn" 
-                    onclick="ym(XXXXXX, 'reachGoal', 'START_CLICK');">
+                    onclick="ym(112002680, 'reachGoal', 'START_CLICK');">
                 ▶ СТАРТ
             </button>
             <button class="btn btn-reset" id="resetBtn"
-                    onclick="ym(XXXXXX, 'reachGoal', 'RESET_CLICK');">
+                    onclick="ym(112002680, 'reachGoal', 'RESET_CLICK');">
                 ⟳ СБРОС
             </button>
         </div>
@@ -348,28 +358,6 @@
             <span class="pixel-star" style="animation-duration: 4s;">✦</span>
         </div>
     </div>
-
-    <!-- ============================================================
-         ЯНДЕКС МЕТРИКА – ВСТАВЬТЕ СВОЙ КОД СЧЁТЧИКА
-         Замените XXXXXX на номер счётчика в обоих местах:
-         – в коде счётчика ниже
-         – в атрибутах onclick кнопок (уже стоят)
-         ============================================================ -->
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript" >
-        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-        ym(XXXXXX, "init", {
-            clickmap:true,
-            trackLinks:true,
-            accurateTrackBounce:true,
-            webvisor:true
-        });
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/XXXXXX" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
-
 
     <!-- ============================================================
          ОСНОВНОЙ СКРИПТ (таймер, счётчики, искры)
@@ -497,7 +485,7 @@
                 sparkContainer.innerHTML = '';
             }
 
-            // === ПИКСЕЛЬНЫЕ ИСКРЫ (вместо конфетти) ===
+            // === ПИКСЕЛЬНЫЕ ИСКРЫ ===
             function launchSparks() {
                 const colors = ['#f7d44a', '#ff6b6b', '#4a6a8f', '#2ed573', '#b8860b', '#a29bfe', '#fd79a8'];
                 const container = sparkContainer;
@@ -520,12 +508,10 @@
 
             // === Обработчики кнопок с учётом счётчиков ===
             startBtn.addEventListener('click', function(e) {
-                // Считаем клик по старт (даже если на паузу)
                 if (!isRunning) {
                     startCount++;
                     updateStatsUI();
                 }
-                // Таймер управляется отдельно
                 if (isRunning) {
                     stopTimer();
                     statusMessage.textContent = '⏸ ПАУЗА. НАЖМИ "ПРОДОЛЖИТЬ"';
@@ -549,11 +535,8 @@
             updateDisplay();
             updateStatsUI();
             statusMessage.textContent = '🕹️ ГОТОВ? НАЖМИ "СТАРТ"!';
-
-            // Запускаем пару искр для приветствия
             setTimeout(launchSparks, 400);
         })();
     </script>
-
 </body>
 </html>
