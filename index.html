@@ -8,9 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
 
     <!-- ============================================================
-         ЯНДЕКС МЕТРИКА – ВАШ КОД С СЧЁТЧИКОМ 112002680
+         ЯНДЕКС МЕТРИКА (ваш счётчик 112002680)
          ============================================================ -->
-    <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -25,9 +24,7 @@
     <!-- /Yandex.Metrika counter -->
 
     <style>
-        /* ---------------------------------------------
-           ГЛОБАЛЬНЫЙ СБРОС И ПИКСЕЛЬНАЯ ОСНОВА
-           --------------------------------------------- */
+        /* ---------- ОСНОВНЫЕ СТИЛИ (из предыдущей версии) ---------- */
         * {
             margin: 0;
             padding: 0;
@@ -55,9 +52,6 @@
             100% { background-position: 40px 40px; }
         }
 
-        /* ---------------------------------------------
-           КАРТОЧКА – ПИКСЕЛЬНАЯ «ПАНЕЛЬ»
-           --------------------------------------------- */
         .card {
             max-width: 780px;
             width: 100%;
@@ -81,9 +75,6 @@
         .card::before { top: -10px; left: -10px; }
         .card::after { bottom: -10px; right: -10px; }
 
-        /* ---------------------------------------------
-           ЗАГОЛОВКИ И ТЕКСТ
-           --------------------------------------------- */
         h1 {
             font-size: 2.4rem;
             color: #f7d44a;
@@ -120,9 +111,6 @@
             font-size: 0.9rem;
         }
 
-        /* ---------------------------------------------
-           ТАЙМЕР
-           --------------------------------------------- */
         .timer-wrapper {
             background: #0b0e1a;
             border: 4px solid #4a6a8f;
@@ -140,9 +128,6 @@
             letter-spacing: 6px;
         }
 
-        /* ---------------------------------------------
-           ПРОГРЕСС-БАР
-           --------------------------------------------- */
         .progress-bar {
             width: 100%;
             height: 20px;
@@ -160,9 +145,6 @@
             box-shadow: 0 0 20px #f7d44a;
         }
 
-        /* ---------------------------------------------
-           СТАТУС
-           --------------------------------------------- */
         .status-message {
             font-size: 1.2rem;
             color: #b8d4f0;
@@ -174,9 +156,6 @@
             text-shadow: 2px 2px 0 #1a2a3a;
         }
 
-        /* ---------------------------------------------
-           ПИКСЕЛЬНЫЕ КНОПКИ
-           --------------------------------------------- */
         .btn-group {
             display: flex;
             justify-content: center;
@@ -222,9 +201,7 @@
             box-shadow: 0 2px 0 #8a2a2a, 0 0 0 4px #0b0e1a;
         }
 
-        /* ---------------------------------------------
-           СТАТИСТИКА
-           --------------------------------------------- */
+        /* ---------- БЛОК СТАТИСТИКИ (добавим контакты) ---------- */
         .stats-block {
             margin-top: 30px;
             background: #0b0e1a;
@@ -250,10 +227,20 @@
             display: inline-block;
             min-width: 40px;
         }
+        /* Дополнительная строка для контактов */
+        .contact-info {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #7bed9f;
+            border-top: 2px solid #4a6a8f;
+            padding-top: 10px;
+        }
+        .contact-info span {
+            display: inline-block;
+            margin: 0 15px;
+        }
 
-        /* ---------------------------------------------
-           ПИКСЕЛЬНЫЕ ИСКРЫ
-           --------------------------------------------- */
+        /* ---------- ПИКСЕЛЬНЫЕ ИСКРЫ ---------- */
         .spark-container {
             position: fixed;
             top: 0;
@@ -278,9 +265,87 @@
             100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
         }
 
-        /* ---------------------------------------------
-           АДАПТИВНОСТЬ
-           --------------------------------------------- */
+        /* ---------- МОДАЛЬНОЕ ОКНО ДЛЯ КОНТАКТОВ ---------- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 14, 26, 0.9);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-box {
+            background: #1a1f2e;
+            border: 6px double #4a6a8f;
+            padding: 40px 30px;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 0 0 4px #0b0e1a, 0 0 0 8px #4a6a8f;
+        }
+        .modal-box h2 {
+            color: #f7d44a;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0 #b8860b;
+        }
+        .modal-box label {
+            display: block;
+            color: #b8d4f0;
+            font-size: 0.8rem;
+            margin-top: 12px;
+            text-align: left;
+        }
+        .modal-box input {
+            width: 100%;
+            padding: 12px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.9rem;
+            background: #0b0e1a;
+            border: 4px solid #4a6a8f;
+            color: #7bed9f;
+            outline: none;
+            margin-top: 4px;
+        }
+        .modal-box input:focus {
+            border-color: #f7d44a;
+        }
+        .modal-box .btn-save {
+            margin-top: 20px;
+            background: #2ed573;
+            box-shadow: 0 8px 0 #1a7a3a, 0 0 0 4px #0b0e1a;
+            padding: 14px 30px;
+            font-size: 1rem;
+        }
+        .modal-box .btn-save:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0 #1a7a3a, 0 0 0 4px #0b0e1a;
+        }
+        .modal-box .skip-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #4a6a8f;
+            font-size: 0.7rem;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .modal-box .skip-link:hover {
+            color: #8bb3d9;
+        }
+
+        /* ---------- АДАПТИВНОСТЬ ---------- */
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
             .subtitle { font-size: 0.8rem; gap: 10px; }
@@ -288,6 +353,7 @@
             .btn { font-size: 0.9rem; padding: 12px 20px; }
             .stats-row { gap: 15px; }
             .card { padding: 25px 15px; }
+            .modal-box { padding: 25px 15px; }
         }
 
         .pixel-star {
@@ -303,10 +369,29 @@
 </head>
 <body>
 
-    <!-- Контейнер для пиксельных искр -->
+    <!-- Контейнер для искр -->
     <div class="spark-container" id="sparkContainer"></div>
 
-    <!-- ============ ОСНОВНАЯ КАРТОЧКА ============ -->
+    <!-- ========== МОДАЛЬНОЕ ОКНО ДЛЯ ВВОДА КОНТАКТОВ ========== -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-box">
+            <h2>👾 ПРЕДСТАВЬТЕСЬ</h2>
+            <p style="color: #8bb3d9; font-size: 0.7rem; margin-bottom: 10px;">
+                Чтобы мы могли связаться с вами после создания сайта
+            </p>
+            <label>Ваше имя</label>
+            <input type="text" id="userName" placeholder="Алексей" />
+
+            <label>Email для связи</label>
+            <input type="email" id="userEmail" placeholder="alex@example.com" />
+
+            <button class="btn btn-save" id="saveContactBtn">✅ СОХРАНИТЬ</button>
+            <br />
+            <span class="skip-link" id="skipContactBtn">пропустить (анонимно)</span>
+        </div>
+    </div>
+
+    <!-- ========== ОСНОВНАЯ КАРТОЧКА ========== -->
     <div class="card">
         <h1>
             <span>👾</span> ВИЗИТКА <span>👾</span><br>
@@ -330,24 +415,26 @@
         </div>
 
         <div class="btn-group">
-            <!-- Кнопки с вызовом Яндекс Метрики (цели START_CLICK и RESET_CLICK) -->
-            <button class="btn btn-start" id="startBtn" 
-                    onclick="ym(112002680, 'reachGoal', 'START_CLICK');">
+            <!-- Кнопка Старт с вызовом Метрики и показом модалки -->
+            <button class="btn btn-start" id="startBtn">
                 ▶ СТАРТ
             </button>
-            <button class="btn btn-reset" id="resetBtn"
-                    onclick="ym(112002680, 'reachGoal', 'RESET_CLICK');">
+            <button class="btn btn-reset" id="resetBtn">
                 ⟳ СБРОС
             </button>
         </div>
 
-        <!-- Блок статистики -->
+        <!-- Блок статистики + контактные данные -->
         <div class="stats-block">
             <p>📊 СТАТИСТИКА КЛИКОВ</p>
             <div class="stats-row">
                 <span>▶ СТАРТ: <strong id="startClicks">0</strong></span>
                 <span>⟳ СБРОС: <strong id="resetClicks">0</strong></span>
                 <span>📌 ВСЕГО: <strong id="totalClicks">0</strong></span>
+            </div>
+            <div class="contact-info" id="contactDisplay">
+                <span>👤 Имя: <strong id="displayName">—</strong></span>
+                <span>📧 Email: <strong id="displayEmail">—</strong></span>
             </div>
         </div>
 
@@ -360,7 +447,7 @@
     </div>
 
     <!-- ============================================================
-         ОСНОВНОЙ СКРИПТ (таймер, счётчики, искры)
+         ОСНОВНОЙ СКРИПТ (таймер, счётчики, контакты, модалка)
          ============================================================ -->
     <script>
         (function() {
@@ -372,16 +459,39 @@
             const resetBtn = document.getElementById('resetBtn');
             const sparkContainer = document.getElementById('sparkContainer');
 
+            // Модалка и поля
+            const modal = document.getElementById('contactModal');
+            const userNameInput = document.getElementById('userName');
+            const userEmailInput = document.getElementById('userEmail');
+            const saveContactBtn = document.getElementById('saveContactBtn');
+            const skipContactBtn = document.getElementById('skipContactBtn');
+            const displayName = document.getElementById('displayName');
+            const displayEmail = document.getElementById('displayEmail');
+
+            // === Контакты из localStorage ===
+            let userContact = {
+                name: localStorage.getItem('userName') || '',
+                email: localStorage.getItem('userEmail') || ''
+            };
+
+            // === Счётчики кликов ===
+            let startCount = parseInt(localStorage.getItem('startClicks_pixel') || '0');
+            let resetCount = parseInt(localStorage.getItem('resetClicks_pixel') || '0');
+
+            // === Таймер ===
             const TOTAL_SECONDS = 5 * 60;
             let timeLeft = TOTAL_SECONDS;
             let timerInterval = null;
             let isRunning = false;
             let isFinished = false;
 
-            // === Счётчики кликов (сохраняются в localStorage) ===
-            let startCount = parseInt(localStorage.getItem('startClicks_pixel') || '0');
-            let resetCount = parseInt(localStorage.getItem('resetClicks_pixel') || '0');
+            // === Обновление UI контактов ===
+            function updateContactUI() {
+                displayName.textContent = userContact.name || '—';
+                displayEmail.textContent = userContact.email || '—';
+            }
 
+            // === Обновление статистики ===
             function updateStatsUI() {
                 document.getElementById('startClicks').textContent = startCount;
                 document.getElementById('resetClicks').textContent = resetCount;
@@ -403,7 +513,6 @@
                 const progress = (timeLeft / TOTAL_SECONDS) * 100;
                 progressFill.style.width = `${progress}%`;
 
-                // Цвет таймера при приближении к концу
                 if (timeLeft <= 30) {
                     timerDisplay.style.color = '#ff6b6b';
                     timerDisplay.style.textShadow = '0 0 20px #ff6b6b, 0 0 40px #ff4757';
@@ -415,7 +524,6 @@
                     timerDisplay.style.textShadow = '0 0 20px #2ed573, 0 0 40px #2ed573';
                 }
 
-                // Статус
                 if (timeLeft === 0) {
                     statusMessage.textContent = '🎉 ГОТОВО! САЙТ СОЗДАН! 🎉';
                     statusMessage.style.background = '#2ed573';
@@ -506,12 +614,78 @@
                 setTimeout(() => { container.innerHTML = ''; }, 5000);
             }
 
-            // === Обработчики кнопок с учётом счётчиков ===
+            // === ОБРАБОТКА МОДАЛКИ ===
+            function showModal() {
+                modal.classList.add('active');
+                if (userContact.name) userNameInput.value = userContact.name;
+                if (userContact.email) userEmailInput.value = userContact.email;
+            }
+
+            function hideModal() {
+                modal.classList.remove('active');
+            }
+
+            function saveContact() {
+                const name = userNameInput.value.trim();
+                const email = userEmailInput.value.trim();
+                if (name) localStorage.setItem('userName', name);
+                if (email) localStorage.setItem('userEmail', email);
+                userContact.name = name || '';
+                userContact.email = email || '';
+                updateContactUI();
+                hideModal();
+                // Отправляем событие в Метрику с параметрами контакта
+                if (name || email) {
+                    ym(112002680, 'reachGoal', 'CONTACT_SAVED', { name: name, email: email });
+                }
+                // Запускаем таймер (если он ещё не запущен)
+                if (!isRunning && timeLeft > 0) {
+                    startTimer();
+                } else if (timeLeft === 0) {
+                    resetTimer();
+                    startTimer();
+                }
+            }
+
+            // === Обработчики модалки ===
+            saveContactBtn.addEventListener('click', saveContact);
+            skipContactBtn.addEventListener('click', function() {
+                hideModal();
+                // Запускаем таймер без контактов
+                if (!isRunning && timeLeft > 0) {
+                    startTimer();
+                } else if (timeLeft === 0) {
+                    resetTimer();
+                    startTimer();
+                }
+            });
+
+            // Закрытие по клику на оверлей (но только если клик на самом оверлее)
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    // не закрываем, чтобы не потерять ввод
+                }
+            });
+
+            // === Обработчик кнопки СТАРТ ===
             startBtn.addEventListener('click', function(e) {
+                // Если контакты не введены и модалка не активна – показываем модалку
+                if (!userContact.name && !userContact.email && !modal.classList.contains('active')) {
+                    showModal();
+                    return; // ждём ввода
+                }
+
+                // Если модалка уже открыта – ничего не делаем (она обрабатывается отдельно)
+                if (modal.classList.contains('active')) return;
+
+                // Если контакты уже есть – управляем таймером как обычно
                 if (!isRunning) {
                     startCount++;
                     updateStatsUI();
+                    // Отправка события в Метрику (с дополнительными параметрами)
+                    ym(112002680, 'reachGoal', 'START_CLICK', { name: userContact.name, email: userContact.email });
                 }
+
                 if (isRunning) {
                     stopTimer();
                     statusMessage.textContent = '⏸ ПАУЗА. НАЖМИ "ПРОДОЛЖИТЬ"';
@@ -525,18 +699,35 @@
                 }
             });
 
+            // === Обработчик кнопки СБРОС ===
             resetBtn.addEventListener('click', function() {
                 resetCount++;
                 updateStatsUI();
+                ym(112002680, 'reachGoal', 'RESET_CLICK', { name: userContact.name, email: userContact.email });
                 resetTimer();
             });
 
             // === Инициализация ===
             updateDisplay();
             updateStatsUI();
+            updateContactUI();
             statusMessage.textContent = '🕹️ ГОТОВ? НАЖМИ "СТАРТ"!';
             setTimeout(launchSparks, 400);
+
+            // Если контакты уже есть – показываем их
+            if (userContact.name || userContact.email) {
+                updateContactUI();
+            } else {
+                // Можно автоматически показать модалку при загрузке (но не навязчиво)
+                // Для удобства – покажем через 3 секунды, если контактов нет
+                setTimeout(() => {
+                    if (!userContact.name && !userContact.email) {
+                        showModal();
+                    }
+                }, 3000);
+            }
         })();
     </script>
+
 </body>
 </html>
