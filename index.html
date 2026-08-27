@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Сайт-визитка в стиле «Пиксели»</title>
+    <title>Сайт-визитка за 5 минут</title>
+    <!-- Пиксельный шрифт -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
 
-    <!-- Яндекс Метрика (ваш счётчик) -->
+    <!-- Яндекс Метрика (ваш счётчик 112002680) -->
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -19,8 +20,14 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/112002680" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 
     <style>
-        /* Все стили без изменений – оставлены как в предыдущей версии */
-        * { margin: 0; padding: 0; box-sizing: border-box; image-rendering: pixelated; }
+        /* ---------- ОСНОВНЫЕ СТИЛИ ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            image-rendering: pixelated;
+        }
+
         body {
             min-height: 100vh;
             display: flex;
@@ -35,7 +42,12 @@
             background-size: 40px 40px;
             animation: starsMove 20s linear infinite;
         }
-        @keyframes starsMove { 0% { background-position: 0 0; } 100% { background-position: 40px 40px; } }
+
+        @keyframes starsMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 40px 40px; }
+        }
+
         .card {
             max-width: 780px;
             width: 100%;
@@ -47,7 +59,9 @@
             text-align: center;
             position: relative;
         }
-        .card::before, .card::after {
+
+        .card::before,
+        .card::after {
             content: "◆";
             position: absolute;
             font-size: 2rem;
@@ -56,6 +70,7 @@
         }
         .card::before { top: -10px; left: -10px; }
         .card::after { bottom: -10px; right: -10px; }
+
         h1 {
             font-size: 2.4rem;
             color: #f7d44a;
@@ -64,8 +79,16 @@
             line-height: 1.4;
             margin-bottom: 12px;
         }
-        h1 span { display: inline-block; animation: blink 1.2s step-end infinite; }
-        @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+        h1 span {
+            display: inline-block;
+            animation: blink 1.2s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
         .subtitle {
             font-size: 1rem;
             color: #8bb3d9;
@@ -83,6 +106,7 @@
             color: #b8d4f0;
             font-size: 0.9rem;
         }
+
         .timer-wrapper {
             background: #0b0e1a;
             border: 4px solid #4a6a8f;
@@ -91,6 +115,7 @@
             margin: 10px 0 20px;
             box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
         }
+
         #timer {
             font-family: 'Press Start 2P', monospace;
             font-size: 4.8rem;
@@ -98,6 +123,7 @@
             text-shadow: 0 0 20px #2ed573, 0 0 40px #2ed573;
             letter-spacing: 6px;
         }
+
         .progress-bar {
             width: 100%;
             height: 20px;
@@ -106,6 +132,7 @@
             margin: 20px 0 24px;
             box-shadow: inset 0 0 10px #000;
         }
+
         #progressFill {
             height: 100%;
             width: 100%;
@@ -113,6 +140,7 @@
             transition: width 0.5s steps(10);
             box-shadow: 0 0 20px #f7d44a;
         }
+
         .status-message {
             font-size: 1.2rem;
             color: #b8d4f0;
@@ -123,6 +151,7 @@
             margin-bottom: 20px;
             text-shadow: 2px 2px 0 #1a2a3a;
         }
+
         .btn-group {
             display: flex;
             justify-content: center;
@@ -130,6 +159,7 @@
             flex-wrap: wrap;
             margin-top: 10px;
         }
+
         .btn {
             font-family: 'Press Start 2P', monospace;
             font-size: 1.2rem;
@@ -145,20 +175,29 @@
             letter-spacing: 2px;
             position: relative;
         }
+
         .btn:active {
             transform: translateY(6px);
             box-shadow: 0 2px 0 #1a2a3a, 0 0 0 4px #0b0e1a;
         }
+
         .btn-start {
             background: #2ed573;
             box-shadow: 0 8px 0 #1a7a3a, 0 0 0 4px #0b0e1a;
         }
-        .btn-start:active { box-shadow: 0 2px 0 #1a7a3a, 0 0 0 4px #0b0e1a; }
+        .btn-start:active {
+            box-shadow: 0 2px 0 #1a7a3a, 0 0 0 4px #0b0e1a;
+        }
+
         .btn-reset {
             background: #ff6b6b;
             box-shadow: 0 8px 0 #8a2a2a, 0 0 0 4px #0b0e1a;
         }
-        .btn-reset:active { box-shadow: 0 2px 0 #8a2a2a, 0 0 0 4px #0b0e1a; }
+        .btn-reset:active {
+            box-shadow: 0 2px 0 #8a2a2a, 0 0 0 4px #0b0e1a;
+        }
+
+        /* ---------- БЛОК СТАТИСТИКИ ---------- */
         .stats-block {
             margin-top: 30px;
             background: #0b0e1a;
@@ -191,7 +230,12 @@
             border-top: 2px solid #4a6a8f;
             padding-top: 10px;
         }
-        .contact-info span { display: inline-block; margin: 0 15px; }
+        .contact-info span {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+        /* ---------- ПИКСЕЛЬНЫЕ ИСКРЫ ---------- */
         .spark-container {
             position: fixed;
             top: 0;
@@ -215,6 +259,8 @@
             0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
             100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
         }
+
+        /* ---------- МОДАЛЬНОЕ ОКНО ---------- */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -268,7 +314,9 @@
             outline: none;
             margin-top: 4px;
         }
-        .modal-box input:focus { border-color: #f7d44a; }
+        .modal-box input:focus {
+            border-color: #f7d44a;
+        }
         .modal-box .btn-save {
             margin-top: 20px;
             background: #2ed573;
@@ -295,12 +343,16 @@
             cursor: pointer;
             text-decoration: underline;
         }
-        .modal-box .skip-link:hover { color: #8bb3d9; }
+        .modal-box .skip-link:hover {
+            color: #8bb3d9;
+        }
         .modal-box .status-msg {
             font-size: 0.8rem;
             margin-top: 10px;
             min-height: 1.5em;
         }
+
+        /* ---------- АДАПТИВНОСТЬ ---------- */
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
             .subtitle { font-size: 0.8rem; gap: 10px; }
@@ -310,6 +362,7 @@
             .card { padding: 25px 15px; }
             .modal-box { padding: 25px 15px; }
         }
+
         .pixel-star {
             display: inline-block;
             font-size: 2rem;
@@ -325,7 +378,7 @@
 
     <div class="spark-container" id="sparkContainer"></div>
 
-    <!-- Модалка -->
+    <!-- ========== МОДАЛЬНОЕ ОКНО ДЛЯ КОНТАКТОВ ========== -->
     <div class="modal-overlay" id="contactModal">
         <div class="modal-box">
             <h2>👾 ПРЕДСТАВЬТЕСЬ</h2>
@@ -343,17 +396,36 @@
         </div>
     </div>
 
-    <!-- Основная карточка -->
+    <!-- ========== ОСНОВНАЯ КАРТОЧКА ========== -->
     <div class="card">
-        <h1><span>👾</span> ВИЗИТКА <span>👾</span><br>ЗА 5 МИНУТ</h1>
-        <div class="subtitle"><span>🕹️ RETRO</span><span>⚡ POWER UP</span></div>
-        <div class="timer-wrapper"><div id="timer">5:00</div></div>
-        <div class="progress-bar"><div id="progressFill" style="width:100%;"></div></div>
-        <div class="status-message" id="statusMessage">⏳ НАЖМИ СТАРТ</div>
+        <!-- НОВЫЙ ЗАГОЛОВОК - ТАК, КАК ВЫ ПРОСИЛИ -->
+        <h1>
+            <span>👾</span> САЙТ-ВИЗИТКА ЗА 5 МИНУТ <span>👾</span>
+        </h1>
+
+        <div class="subtitle">
+            <span>🕹️ RETRO</span>
+            <span>⚡ POWER UP</span>
+        </div>
+
+        <div class="timer-wrapper">
+            <div id="timer">5:00</div>
+        </div>
+
+        <div class="progress-bar">
+            <div id="progressFill" style="width: 100%;"></div>
+        </div>
+
+        <div class="status-message" id="statusMessage">
+            ⏳ НАЖМИ СТАРТ
+        </div>
+
         <div class="btn-group">
             <button class="btn btn-start" id="startBtn">▶ СТАРТ</button>
             <button class="btn btn-reset" id="resetBtn">⟳ СБРОС</button>
         </div>
+
+        <!-- Блок статистики и контактов -->
         <div class="stats-block">
             <p>📊 СТАТИСТИКА КЛИКОВ</p>
             <div class="stats-row">
@@ -366,14 +438,17 @@
                 <span>📧 Email: <strong id="displayEmail">—</strong></span>
             </div>
         </div>
-        <div style="margin-top:25px; font-size:2.2rem; color:#4a6a8f; letter-spacing:12px;">
+
+        <div style="margin-top: 25px; font-size: 2.2rem; color: #4a6a8f; letter-spacing: 12px;">
             <span class="pixel-star">✦</span>
-            <span class="pixel-star" style="animation-duration:8s;">✧</span>
-            <span class="pixel-star" style="animation-duration:4s;">✦</span>
+            <span class="pixel-star" style="animation-duration: 8s;">✧</span>
+            <span class="pixel-star" style="animation-duration: 4s;">✦</span>
         </div>
     </div>
 
-    <!-- ===== ОСНОВНОЙ СКРИПТ ===== -->
+    <!-- ============================================================
+         ОСНОВНОЙ СКРИПТ (таймер, счётчики, контакты, Formspree)
+         ============================================================ -->
     <script>
         (function() {
             // ---- Элементы ----
@@ -399,7 +474,7 @@
                 email: localStorage.getItem('userEmail') || ''
             };
 
-            // ---- Счётчики ----
+            // ---- Счётчики кликов ----
             let startCount = parseInt(localStorage.getItem('startClicks_pixel') || '0');
             let resetCount = parseInt(localStorage.getItem('resetClicks_pixel') || '0');
 
@@ -410,12 +485,13 @@
             let isRunning = false;
             let isFinished = false;
 
-            // ---- Вспомогательные функции ----
+            // ---- Обновление UI контактов ----
             function updateContactUI() {
                 displayName.textContent = userContact.name || '—';
                 displayEmail.textContent = userContact.email || '—';
             }
 
+            // ---- Обновление статистики ----
             function updateStatsUI() {
                 document.getElementById('startClicks').textContent = startCount;
                 document.getElementById('resetClicks').textContent = resetCount;
@@ -424,16 +500,19 @@
                 localStorage.setItem('resetClicks_pixel', resetCount);
             }
 
+            // ---- Форматирование времени ----
             function formatTime(seconds) {
                 const mins = Math.floor(seconds / 60);
                 const secs = seconds % 60;
                 return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
             }
 
+            // ---- Обновление дисплея ----
             function updateDisplay() {
                 timerDisplay.textContent = formatTime(timeLeft);
                 const progress = (timeLeft / TOTAL_SECONDS) * 100;
                 progressFill.style.width = `${progress}%`;
+
                 if (timeLeft <= 30) {
                     timerDisplay.style.color = '#ff6b6b';
                     timerDisplay.style.textShadow = '0 0 20px #ff6b6b, 0 0 40px #ff4757';
@@ -444,6 +523,7 @@
                     timerDisplay.style.color = '#7bed9f';
                     timerDisplay.style.textShadow = '0 0 20px #2ed573, 0 0 40px #2ed573';
                 }
+
                 if (timeLeft === 0) {
                     statusMessage.textContent = '🎉 ГОТОВО! САЙТ СОЗДАН! 🎉';
                     statusMessage.style.background = '#2ed573';
@@ -466,7 +546,9 @@
             // ---- Управление таймером ----
             function startTimer() {
                 if (isRunning) return;
-                if (timeLeft === 0) resetTimer();
+                if (timeLeft === 0) {
+                    resetTimer();
+                }
                 isRunning = true;
                 isFinished = false;
                 timerInterval = setInterval(() => {
@@ -511,7 +593,7 @@
                 sparkContainer.innerHTML = '';
             }
 
-            // ---- Искры ----
+            // ---- ПИКСЕЛЬНЫЕ ИСКРЫ ----
             function launchSparks() {
                 const colors = ['#f7d44a', '#ff6b6b', '#4a6a8f', '#2ed573', '#b8860b', '#a29bfe', '#fd79a8'];
                 const container = sparkContainer;
@@ -532,7 +614,7 @@
                 setTimeout(() => { container.innerHTML = ''; }, 5000);
             }
 
-            // ===== ОТПРАВКА В FORMPREE (исправленная) =====
+            // ===== ОТПРАВКА В FORMPREE =====
             async function sendContactToFormspree(name, email) {
                 const endpoint = 'https://formspree.io/f/mzebpawq';
                 const payload = { name, email };
@@ -575,7 +657,6 @@
                 modal.classList.remove('active');
             }
 
-            // Обработчик кнопки "СОХРАНИТЬ" с ожиданием ответа
             async function saveContact() {
                 const name = userNameInput.value.trim();
                 const email = userEmailInput.value.trim();
@@ -584,27 +665,21 @@
                     formStatus.style.color = '#f7d44a';
                     return;
                 }
-                // Показываем статус "отправка"
                 formStatus.textContent = '⏳ Отправка...';
                 formStatus.style.color = '#b8d4f0';
-                saveContactBtn.disabled = true; // блокируем кнопку
+                saveContactBtn.disabled = true;
 
-                // Отправляем
                 const success = await sendContactToFormspree(name, email);
 
                 if (success) {
-                    // Сохраняем в localStorage
                     if (name) localStorage.setItem('userName', name);
                     if (email) localStorage.setItem('userEmail', email);
                     userContact.name = name || '';
                     userContact.email = email || '';
                     updateContactUI();
-                    // Отправляем событие в Метрику
                     ym(112002680, 'reachGoal', 'CONTACT_SAVED', { name, email });
-                    // Закрываем модалку через 0.8 сек (чтобы пользователь увидел "Отправлено")
                     setTimeout(() => {
                         hideModal();
-                        // Запускаем таймер, если он не запущен
                         if (!isRunning && timeLeft > 0) {
                             startTimer();
                         } else if (timeLeft === 0) {
@@ -614,16 +689,14 @@
                         saveContactBtn.disabled = false;
                     }, 800);
                 } else {
-                    // Ошибка — кнопка разблокируется, модалка остаётся
                     saveContactBtn.disabled = false;
                 }
             }
 
-            // === Обработчики модалки ===
+            // ---- Обработчики модалки ----
             saveContactBtn.addEventListener('click', saveContact);
             skipContactBtn.addEventListener('click', function() {
                 hideModal();
-                // Запускаем таймер без контактов
                 if (!isRunning && timeLeft > 0) {
                     startTimer();
                 } else if (timeLeft === 0) {
@@ -632,16 +705,14 @@
                 }
             });
 
-            // === Обработчик кнопки СТАРТ ===
+            // ---- Обработчик кнопки СТАРТ ----
             startBtn.addEventListener('click', function(e) {
-                // Если контакты не введены и модалка не активна – показываем модалку
                 if (!userContact.name && !userContact.email && !modal.classList.contains('active')) {
                     showModal();
                     return;
                 }
                 if (modal.classList.contains('active')) return;
 
-                // Если контакты уже есть – управляем таймером
                 if (!isRunning) {
                     startCount++;
                     updateStatsUI();
@@ -661,7 +732,7 @@
                 }
             });
 
-            // === Обработчик кнопки СБРОС ===
+            // ---- Обработчик кнопки СБРОС ----
             resetBtn.addEventListener('click', function() {
                 resetCount++;
                 updateStatsUI();
@@ -669,7 +740,7 @@
                 resetTimer();
             });
 
-            // === Инициализация ===
+            // ---- Инициализация ----
             updateDisplay();
             updateStatsUI();
             updateContactUI();
